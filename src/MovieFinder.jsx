@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { ShowMovies } from "./components/ShowMovies"
 
 export const MovieFinder = () => {
 
@@ -29,10 +30,8 @@ export const MovieFinder = () => {
 
 
     return (
-
         <div className="md:container md:mx-auto text-center py-12 flex flex-col items-center font-mono">
             <h1 className="font-bold text-2xl font-mono">Movie Finder</h1>
-
             <form onSubmit={handleSubmit} className="w-full max-w-screen-md mt-10 ">
                 <div className="flex items-center border-b border-teal-500 py-2">
                     <input
@@ -41,7 +40,6 @@ export const MovieFinder = () => {
                         placeholder="Find a movie"
                         value={buscador}
                         onChange={handleInputChange} />
-
                     <button
                         className="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded" type="submit">
                         Search
@@ -49,21 +47,7 @@ export const MovieFinder = () => {
 
                 </div>
             </form>
-
-            <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {peliculas.map((pelicula) => (
-                        <div key={pelicula.id} className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                            <img className="rounded-t-lg" src={`https://image.tmdb.org/t/p/w500${pelicula.poster_path}`} alt={pelicula.title} />
-                            <p className="text-sm text-gray-500 truncate dark:text-gray-400 mt-2 text-left pl-3">Average: {pelicula.vote_average}</p>
-                            <div className="p-3">
-                                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{pelicula.title}</h5>
-                                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 text-left">{pelicula.overview}</p>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
+            <ShowMovies peliculas={peliculas} />
         </div>
     )
 }
